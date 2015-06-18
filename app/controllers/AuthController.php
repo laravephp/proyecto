@@ -14,7 +14,7 @@ class AuthController extends BaseController {
   {
     $data = [
       'username' => Input::get('username'),
-      'password' => Input::get('password')
+      'password' => Input::get('passwordPrueba')
     ];
 
     if (Auth::attempt($data, Input::get('remember')))
@@ -22,7 +22,7 @@ class AuthController extends BaseController {
       return Redirect::to('dash');
     }
     else{
-      return Redirect::back()->with('error_message', 'Verifica tu información')->withInput();
+      return Redirect::back()->with('error_message', 'Datos inválidos')->withInput();
     }
 
   }
@@ -30,7 +30,7 @@ class AuthController extends BaseController {
   public function logout()
   {
     Auth::logout();
-    return Redirect::to('login')->with('error_message', 'Saliste Correctamente');
+    return Redirect::to('login')->with('error_message', 'Logged out correctly');
   }
 
   public function showWelcome()
